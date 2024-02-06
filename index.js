@@ -1,6 +1,7 @@
 const http = require("http");
 const fs = require("fs");
 const querystring = require("querystring");
+const slugify = require("slugify");
 const replaceTemplate = require("./modules/replaceTemplate");
 // const url = require("url");
 
@@ -19,6 +20,10 @@ const tempProduct = fs.readFileSync(
 
 const jsonData = fs.readFileSync(`${__dirname}/data/data.json`, "utf-8");
 const objData = JSON.parse(jsonData);
+const slugs = objData.map((el) =>
+  slugify(el.productName, { replacement: "-", lower: true })
+);
+console.log(slugs);
 
 const server = http.createServer((req, res) => {
   // This code does'nt work properly, In the Nodejs documentation they says it's Depricated now. Here the main problem is the QueryString object remians empty sometimes. That means the QueryString Object key shows empty({"": "0"}) like this, though the value shows proeprly.
