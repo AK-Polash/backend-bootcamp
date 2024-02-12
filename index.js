@@ -63,7 +63,9 @@ const server = http.createServer((req, res) => {
       "content-type": "text/html",
       "my-own-header": "A.K. Polash",
     });
-    res.end("<h1>Page Not Found!</h1>");
+    res.end(
+      "<h1 style='color: tomato; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);'>Page Not Found!</h1>"
+    );
   }
 });
 
